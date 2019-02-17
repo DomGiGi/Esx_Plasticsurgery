@@ -11,7 +11,7 @@ Config.MarkerType   = 27
 Config.Zones = {}
 
 Config.Shops = {
-  {x = -450.37,  y = -340.08,  z = 34.5},
+  {x = -450.37,  y = -340.08,  z = 33.6},
 }
 
 for i=1, #Config.Shops, 1 do
