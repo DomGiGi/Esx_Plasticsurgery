@@ -123,6 +123,7 @@ function OpenShopMenu()
 		'hair_2',
 		'hair_color_1',
 		'hair_color_2',
+		'eye_color',
 		'eyebrows_1',
 		'eyebrows_2',
 		'eyebrows_3',
@@ -244,4 +245,32 @@ Citizen.CreateThread(function()
 		end
 
 	end
+end)
+
+local blips = {
+	{x = -449.08,  y = -340.17,  z = 34.5,  heading= 77.08,  scale=1.0},
+}
+
+Citizen.CreateThread(function()
+    RequestModel(GetHashKey("s_m_m_doctor_01"))
+    while not HasModelLoaded(GetHashKey("s_m_m_doctor_01")) do
+        Wait(1)
+    end
+
+    for _, item in pairs(blips) do
+        item.blip = AddBlipForCoord(item.x, item.y, item.z)
+        SetBlipSprite(item.blip, item.id)
+        SetBlipColour(item.blip, item.color)
+        SetBlipAsShortRange(item.blip, true)
+        SetBlipScale(item.blip, item.scale)
+        BeginTextCommandSetBlipName("STRING")
+        AddTextComponentString(item.name)
+        EndTextCommandSetBlipName(item.blip)
+
+        CreatePed(4, 0xd47303ac, item.x, item.y, item.z, item.heading, false, true)
+        SetEntityHeading(item.blip, item.heading)
+        FreezeEntityPosition(item.blip, true)
+        SetEntityInvincible(item.blip, true)
+        SetBlockingOfNonTemporaryEvents(item.blip, true)
+    end
 end)
