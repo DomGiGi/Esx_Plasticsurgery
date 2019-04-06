@@ -6,6 +6,8 @@ Adicionado a opcao de mudar a cor dos olhos.
 
 Adicionado Npc Cirugiao.
 
+Adicionado 3D Text
+
 ############################################
 
 Changes Made Added Blip to Show where is the Surgeon.
