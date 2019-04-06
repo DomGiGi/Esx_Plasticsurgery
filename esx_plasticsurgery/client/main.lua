@@ -121,9 +121,9 @@ function OpenShopMenu()
 		'beard_4',
 		'hair_1',
 		'hair_2',
+		'eye_color',
 		'hair_color_1',
 		'hair_color_2',
-		'eye_color',
 		'eyebrows_1',
 		'eyebrows_2',
 		'eyebrows_3',
@@ -183,7 +183,7 @@ Citizen.CreateThread(function()
 		
 		for k,v in pairs(Config.Zones) do
 			if(v.Type ~= -1 and GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < Config.DrawDistance) then
-				DrawMarker(v.Type, v.Pos.x, v.Pos.y, v.Pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, v.Size.x, v.Size.y, v.Size.z, v.Color.r, v.Color.g, v.Color.b, 100, false, true, 2, false, false, false, false)
+				DrawText3Ds(v.Pos.x, v.Pos.y, v.Pos.z + 0.5, 'Pressiona [~g~E~s~] Para falar Com Cirugiao', 0.4)
 			end
 		end
 
@@ -228,7 +228,6 @@ Citizen.CreateThread(function()
 		if CurrentAction ~= nil then
 
 			SetTextComponentFormat('STRING')
-			AddTextComponentString(CurrentActionMsg)
 			DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 
 			if IsControlPressed(0,  Keys['E']) and (GetGameTimer() - GUI.Time) > 300 then
@@ -248,7 +247,7 @@ Citizen.CreateThread(function()
 end)
 
 local blips = {
-	{x = -449.08,  y = -340.17,  z = 34.5,  heading= 77.08,  scale=1.0},
+	{x = 326.59,  y = -582.9,  z = 43.32,  heading= 10.00,  scale=1.0},
 }
 
 Citizen.CreateThread(function()
@@ -274,3 +273,19 @@ Citizen.CreateThread(function()
         SetBlockingOfNonTemporaryEvents(item.blip, true)
     end
 end)
+
+function DrawText3Ds(x,y,z, text)
+	local onScreen,_x,_y=World3dToScreen2d(x,y,z)
+	local px,py,pz=table.unpack(GetGameplayCamCoords())
+  
+	SetTextScale(0.35, 0.35)
+	SetTextFont(4)
+	SetTextProportional(1)
+	SetTextColour(255, 255, 255, 215)
+	SetTextEntry("STRING")
+	SetTextCentre(true)
+	AddTextComponentString(text)
+	DrawText(_x,_y)
+	local factor = (string.len(text)) / 370
+	DrawRect(_x,_y+0.0125, 0.015+ factor, 0, 0, 0, 0.0)
+  end
