@@ -3,7 +3,7 @@ Config.Locale = 'en'
 
 Config.Price = 2500
 
-Config.DrawDistance = 100.0
+Config.DrawDistance = 1.5
 Config.MarkerSize   = {x = 1.5, y = 1.5, z = 1.0}
 Config.MarkerColor  = {r = 102, g = 102, b = 204}
 Config.MarkerType   = 27
