@@ -166,18 +166,15 @@ Citizen.CreateThread(function()
 		SetBlipScale  (blip, 1.0)
 		SetBlipColour (blip, 81)
 		SetBlipAsShortRange(blip, true)
-
 		BeginTextCommandSetBlipName("STRING")
 		AddTextComponentString(_U('Cirugiao'))
 		EndTextCommandSetBlipName(blip)
 	end
-
 end)
 
 Citizen.CreateThread(function()
 	while true do
-		
-		Wait(0)
+	       Wait(0)
 		
 		local coords = GetEntityCoords(GetPlayerPed(-1))
 		
@@ -192,8 +189,7 @@ end)
 
 Citizen.CreateThread(function()
 	while true do
-		
-		Wait(0)
+	      Wait(0)
 		
 		local coords      = GetEntityCoords(GetPlayerPed(-1))
 		local isInMarker  = false
@@ -222,8 +218,7 @@ end)
 
 Citizen.CreateThread(function()
 	while true do
-
-		Citizen.Wait(0)
+	 Citizen.Wait(0)
 
 		if CurrentAction ~= nil then
 
@@ -253,7 +248,7 @@ local blips = {
 Citizen.CreateThread(function()
     RequestModel(GetHashKey("s_m_m_doctor_01"))
     while not HasModelLoaded(GetHashKey("s_m_m_doctor_01")) do
-        Wait(1)
+        Wait(0)
     end
 
     for _, item in pairs(blips) do
@@ -265,7 +260,6 @@ Citizen.CreateThread(function()
         BeginTextCommandSetBlipName("STRING")
         AddTextComponentString(item.name)
         EndTextCommandSetBlipName(item.blip)
-
         CreatePed(4, 0xd47303ac, item.x, item.y, item.z, item.heading, false, true)
         SetEntityHeading(item.blip, item.heading)
         FreezeEntityPosition(item.blip, true)
@@ -277,7 +271,6 @@ end)
 function DrawText3Ds(x,y,z, text)
 	local onScreen,_x,_y=World3dToScreen2d(x,y,z)
 	local px,py,pz=table.unpack(GetGameplayCamCoords())
-  
 	SetTextScale(0.35, 0.35)
 	SetTextFont(4)
 	SetTextProportional(1)
